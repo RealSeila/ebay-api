@@ -1,0 +1,13 @@
+Revision history for Perl extension eBay::API.
+
+[next version]
+    - add local xsd file support to Makefile.PL
+      This change allows someone to specify local xsd file 
+      for the class generation.
+      
+      perl Makefile.PL --xsd_file=/tmp/my.xsd
+      
+0.01  Fri May 26 18:58:46 2006
+    - original version; created by h2xs 1.23 with options
+        -XA -n eBay::API
+
