@@ -1208,6 +1208,4 @@ t/03testItemSerialization.t
 t/04testArraySerialization.t
 t/05testGeteBayOfficialTime.t
 t/lib/TestCommon/Credentials.pm
-t/lib/calls/01use.t
-t/lib/calls/02search.t
 
