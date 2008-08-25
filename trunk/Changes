@@ -1,6 +1,7 @@
 Revision history for Perl extension eBay::API.
 
-[next version]
+0.23 Sun Aug 24 20:17:17 PDT 2008
+    - add generated code to CPAN distribution
     - add local xsd file support to Makefile.PL
       This change allows someone to specify local xsd file 
       for the class generation.
