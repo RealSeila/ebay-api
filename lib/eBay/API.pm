@@ -1,9 +1,6 @@
 ################################################################################
 # Location: ...................... <user defined location>/eBay
 # File: .......................... API.pm
-# Original Author: ............... Jeff Nokes
-# Last Modifed By: ............... Bob Bradley / Jeff Nokes
-# Last Modified: ................. 03/22/2007 @ 16:46
 #
 # Description
 #
@@ -40,7 +37,7 @@
   # none
 
 # Globals
-  our $VERSION = '0.22';
+  our $VERSION = '0.23';
 
 # Lexicals
   # none
