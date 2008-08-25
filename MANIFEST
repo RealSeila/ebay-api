@@ -54,6 +54,9 @@ lib/eBay/API/XML/Call/ApproveLiveAuctionBidders/ApproveLiveAuctionBiddersRespons
 lib/eBay/API/XML/Call/CompleteSale.pm
 lib/eBay/API/XML/Call/CompleteSale/CompleteSaleRequestType.pm
 lib/eBay/API/XML/Call/CompleteSale/CompleteSaleResponseType.pm
+lib/eBay/API/XML/Call/ConfirmIdentity.pm
+lib/eBay/API/XML/Call/ConfirmIdentity/ConfirmIdentityRequestType.pm
+lib/eBay/API/XML/Call/ConfirmIdentity/ConfirmIdentityResponseType.pm
 lib/eBay/API/XML/Call/DeleteMyMessages.pm
 lib/eBay/API/XML/Call/DeleteMyMessages/DeleteMyMessagesRequestType.pm
 lib/eBay/API/XML/Call/DeleteMyMessages/DeleteMyMessagesResponseType.pm
@@ -437,6 +440,7 @@ lib/eBay/API/XML/DataType/AdFormatEnabledDefinitionType.pm
 lib/eBay/API/XML/DataType/AdFormatLeadType.pm
 lib/eBay/API/XML/DataType/AffiliateTrackingDetailsType.pm
 lib/eBay/API/XML/DataType/AmountType.pm
+lib/eBay/API/XML/DataType/AnnouncementMessageType.pm
 lib/eBay/API/XML/DataType/ApiAccessRuleType.pm
 lib/eBay/API/XML/DataType/ApplicationDeliveryPreferencesType.pm
 lib/eBay/API/XML/DataType/ASQPreferencesType.pm
@@ -586,6 +590,7 @@ lib/eBay/API/XML/DataType/Enum/AddressRecordTypeCodeType.pm
 lib/eBay/API/XML/DataType/Enum/AddressStatusCodeType.pm
 lib/eBay/API/XML/DataType/Enum/AdFormatEnabledCodeType.pm
 lib/eBay/API/XML/DataType/Enum/AdFormatLeadStatusCodeType.pm
+lib/eBay/API/XML/DataType/Enum/AnnouncementMessageCodeType.pm
 lib/eBay/API/XML/DataType/Enum/ApplicationDeviceTypeCodeType.pm
 lib/eBay/API/XML/DataType/Enum/AuthTokenTypeCodeType.pm
 lib/eBay/API/XML/DataType/Enum/BalanceCodeType.pm
@@ -942,6 +947,8 @@ lib/eBay/API/XML/DataType/MyMessagesAlertArrayType.pm
 lib/eBay/API/XML/DataType/MyMessagesAlertIDArrayType.pm
 lib/eBay/API/XML/DataType/MyMessagesAlertIDType.pm
 lib/eBay/API/XML/DataType/MyMessagesAlertType.pm
+lib/eBay/API/XML/DataType/MyMessagesExternalMessageIDArrayType.pm
+lib/eBay/API/XML/DataType/MyMessagesExternalMessageIDType.pm
 lib/eBay/API/XML/DataType/MyMessagesFolderSummaryType.pm
 lib/eBay/API/XML/DataType/MyMessagesFolderType.pm
 lib/eBay/API/XML/DataType/MyMessagesForwardDetailsType.pm
@@ -1207,5 +1214,6 @@ t/02testItemIDTypeSerialization.t
 t/03testItemSerialization.t
 t/04testArraySerialization.t
 t/05testGeteBayOfficialTime.t
+t/calls/01use.t
+t/calls/02search.t
 t/lib/TestCommon/Credentials.pm
-
