@@ -6,6 +6,7 @@ eg/XML/getSearchResults.pl
 eg/XML/getUser.pl
 eg/XML/verifyAddItem.pl
 INSTALL
+META.yml
 lib/eBay/API.pm
 lib/eBay/API/BaseApi.pm
 lib/eBay/API/XML/BaseCall.pm
