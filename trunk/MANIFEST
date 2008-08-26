@@ -8,6 +8,7 @@ eg/XML/verifyAddItem.pl
 INSTALL
 META.yml
 lib/eBay/API.pm
+lib/eBay/API/Cookbook.pod
 lib/eBay/API/BaseApi.pm
 lib/eBay/API/XML/BaseCall.pm
 lib/eBay/API/XML/BaseCallGen.pm
