@@ -1,0 +1,133 @@
+=head1 NAME
+
+eBay::API::Cookbook - The How Tos 
+
+=head1 The Questions
+
+=over 4
+
+=item *
+
+L<How do I execute an API call using custom raw XML?>
+
+=item *
+
+L<How do I retrieve the eBay official time?>
+
+=item *
+
+L<Which ENV variables do I need to set do not have to specify credentials, 
+proxy url, site id with each call?>
+
+=item *
+
+L<How do I regenerate the API classes based off of the lastest eBay schema?>
+
+=back
+
+=head1 How do I execute an API call using custom raw XML?
+
+  use strict;
+  use eBay::API::XML::Call::FetchToken;
+
+  my $call = new eBay::API::XML::Call::FetchToken(
+      site_id => 0,
+      proxy   => 'https://api.ebay.com/ws/api.dll',
+      dev_id  => __DEVELOPER_ID__,
+      app_id  => __APPLICATION_ID__,
+      cert_id => __CERT_ID__,
+      user_auth_token => __AUTH_TOKEN__, 
+  );
+  
+  $call->setRequestRawXml('<?xml version="1.0" encoding="UTF-8"?>
+      <FetchTokenRequest xmlns="urn:ebay:apis:eBLBaseComponents">
+      <SecretID>
+        R2n6MQr@LDMAABeDFY8.1025449191.1198127665.563330
+      </SecretID>
+      <RequesterCredentials><Username>__USERNAME__</Username>
+      </RequesterCredentials>
+      </FetchTokenRequest>'
+  );
+
+  $call->execute();
+  
+  print $call->getEBayAuthToken();
+  print $call->dumpObject();
+
+=head1 How do I retrieve the eBay official time?
+
+  use  eBay::API::XML::Call::GeteBayOfficialTime;
+
+  my $call = eBay::API::XML::Call::GeteBayOfficialTime->new(
+      site_id => 0,
+      proxy   => 'https://api.ebay.com/ws/api.dll',
+      dev_id  => __DEVELOPER_ID__,
+      app_id  => __APPLICATION_ID__,
+      cert_id => __CERT_ID__,
+      user_auth_token => __AUTH_TOKEN__, 
+  );
+    
+  $call->execute();
+            
+  print $call->getEBayOfficialTime();
+
+=head1 Which ENV variables do I need to set do not have to specify credentials, proxy url, site id with each call?
+
+  # eBay API application credentials
+  $ENV{'EBAY_API_APP_ID'}  ='appid'
+  $ENV{'EBAY_API_CERT_ID'} ='certid'
+  $ENV{'EBAY_API_DEV_ID'}  ='devid'
+
+  # eBay User credentials
+  $ENV{'EBAY_API_USER_AUTH_TOKEN'} = 'token';
+  $ENV{'EBAY_API_USER_NAME'}       = 'username';
+  $ENV{'EBAY_API_USER_PASSWORD'}   = 'password';
+
+Be aware that eBay User Credentials ENV variables are used for each call
+unless they are explicitly overwritten by appropriate call setters. So these
+credentials should be used only for anonymous calls while for non-anonymous 
+calls you should use credentials of a specific user on whose behalf you are
+submitting the call.
+
+Also, be aware that most API calls require the use of an auth token vice
+that of a userid/password.  Check the latest API documentation for further
+details.
+
+  # eBay API URL
+  $ENV{'EBAY_API_XML_TRANSPORT'} = 'https://api.sandbox.ebay.com/ws/api.dll';
+  $ENV{'EBAY_API_URI'} = 'urn:ebay:apis:eBLBaseComponents';
+
+  # site id
+  $ENV{'EBAY_API_SITE_ID'} = 0;
+    
+  # additional call parameters
+  $ENV{'EBAY_API_VERSION'} = 461;
+  $ENV{'EBAY_API_COMPATIBILITY_LEVEL'} = 461;
+  $ENV{'EBAY_API_XML_ERR_LANG'} = 'en_US';
+
+=head1 How do I regenerate the API classes based off of the lastest eBay schema?
+
+To regenerate the API classes you need to rerun the Makefile.PL which will 
+downloaded the latest xsd file from eBay and rebuild the classes,
+
+  http://developer.ebay.com/webservices/latest/eBaySvc.xsd
+
+The easiest way to regenerate is to:
+
+  cpan> look eBay::API
+  % perl Makefile.PL
+  % make && make install
+
+=head1 AUTHOR
+
+Tim Keefer <tim@timkeefer.com>
+
+=head1 COPYRIGHT and LICENSE
+
+Copyright (c) 2008, Tim Keefer.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.8.6 or,
+at your option, any later version of Perl 5 you may have available.
+
+=cut
