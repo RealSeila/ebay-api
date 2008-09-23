@@ -5,8 +5,8 @@
 # Module: ............... <user defined location>/eBay/API
 # File: ................. BaseApi.pm
 # Original Authors: ..... Jeff Nokes / Bob Bradley
-# Last Modified By: ..... Jeff Nokes
-# Last Modified: ........ 03/15/2007 @ 14:46
+# Last Modified By: ..... Bob Bradley
+# Last Modified: ........ 09/22/08 Mon 16:53
 #
 #########################################################################
 
@@ -162,6 +162,8 @@ sub setCallRetry($$;);                #         Public                Instance
 sub getCallRetry($;);                 #         Public                Instance
 sub setTimeout($$;);                  #         Public                Instance
 sub getTimeout($;);                   #         Public                Instance
+sub setXmlParsing($$;);               #         Public                Instance
+sub getXmlParsing($;);                #         Public                Instance
 
 # Main Script
 # ---------------------------------------------------------------------------
@@ -393,6 +395,7 @@ sub new($;$) {
   $self->{user_password} = $ENV{EBAY_API_USER_PASSWORD};
   $self->{user_auth_token} = $ENV{EBAY_API_USER_AUTH_TOKEN};
   $self->{proxy} = $ENV{EBAY_API_XML_TRANSPORT};
+  $self->{xmlparsing} = 1;
 
 # Deprecated
 #  if ($ENV{EBAY_API_XML_ERR_LANG}) {
@@ -2700,6 +2703,94 @@ True if compression is enabled; false if it is not
 
     return $self->{compression};
   }
+
+
+=head2 setXmlParsing()
+
+Enables/disables parsing the XML content returned by an API call
+into a nested hash representation of a DOM tree.  The default is
+for parsing to be enabled.  Use this call to disable parsing in those
+cases where the API call returns a very large about of XML and you
+want to apply a customXML parsing filter to gain an improvement in
+performance.  When this flag is enabled, you should call 
+getResponseRawXml() and parse the returned string containing the raw
+XML content returned in the API's HTTP response.
+
+Arguments:
+
+=over 4
+
+=item *
+
+A reference to object of type eBay::API.
+
+=item *
+
+Boolean value (0 = false; non-zero = true);
+
+=back
+
+Returns: 
+
+=over 4
+
+=item *
+
+The boolean value to be set for this attribute.
+
+=back
+
+=cut
+
+  sub setXmlParsing($$;) {
+      my $self = shift;
+      my $bool = shift;
+
+      # Validation
+      eBay::API::BaseApi::_check_arg($self, Params::Validate::OBJECT);
+      eBay::API::BaseApi::_check_arg($bool, Params::Validate::BOOLEAN);
+
+      $self->{xmlparsing} = $bool;
+      return $bool;
+  }
+
+=head2 getXmlParsing()
+
+Returns true of default XML parsing is enabled; otherwise false.  See
+setXmlParsing for how and why to use this feature.
+
+Arguments: 
+
+=over 4
+
+=item *
+
+A reference to an object of type eBay::API.
+
+=back
+
+Returns: 
+
+=over 4
+
+=item *
+
+True if XML parsing is enabled; false if it is not
+
+=back
+
+=cut
+
+  sub getXmlParsing($;) {
+    my $self = shift;
+
+    # Validation
+    eBay::API::BaseApi::_check_arg($self, Params::Validate::OBJECT);
+
+    return $self->{xmlparsing};
+  }
+
+
 
 =pod
 

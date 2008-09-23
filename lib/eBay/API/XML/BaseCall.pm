@@ -10,8 +10,8 @@ use warnings;
 # Module: ............... <user defined location>eBay/API/XML
 # File: ................. BaseCall.pm
 # Original Author: ...... Milenko Milanovic
-# Last Modified By: ..... Robert Bradley / Jeff Nokes
-# Last Modified: ........ 03/06/2007 @ 16:28
+# Last Modified By: ..... Robert Bradley
+# Last Modified: ........ Bob Bradley
 #
 # Description: This is a super class for all eBay API calls. 
 #
@@ -275,7 +275,7 @@ sub _submitHttpRequest($$$;) {
        my $shouldRetry = $pCallRetry->shouldRetry(
 	                     # ref to an array of ErrorDataType objects
 			     #  check out both, errors and warnings
-       			   'raErrors' => $self->getErrorsAndWarnings()
+       			   {'raErrors' => $self->getErrorsAndWarnings()}
 		        );
 
        if ( $shouldRetry ) {
@@ -980,10 +980,12 @@ sub processResponse {
 
           # I.1. parse the raw response
       eval {
-           $rhXmlSimple = XMLin ( $sRawXml
-	                  , forcearray => []
-	  	          , keyattr => [] 
-	           );
+          if ($self->getXmlParsing()) { 
+              $rhXmlSimple = XMLin ( $sRawXml
+                                         , forcearray => []
+                                         , keyattr => [] 
+                                         );
+          }
       };
 
       if ( $@ ) {     # I.2. OOPS, parsing failed - response is not 
@@ -1128,7 +1130,7 @@ sub _handleResposeParsedButStructureEmpty {
       }	   
    }
 
-   if ( $isEmpty ) {
+   if ( $isEmpty && $self->getXmlParsing ) {
 
 	  my $longMsg   = "no data from response xml [$sRawXml]";
 	  my $shortMsg  = 'no data from response xml';
