@@ -6,8 +6,8 @@
 # File: ................. CallRetry.pm
 # Original Author: ...... Milenko Milanovic 
 #                          (based on CallRetry.java written by Weijun Li)
-# Last Modified By: ..... Robert Bradley / Jeff Nokes
-# Last Modified: ........ 03/06/2007 @ 16:26
+# Last Modified By: ..... Robert Bradley
+# Last Modified: ........ 09/23/08 Tue 09:32
 #
 ##########################################################################
 
@@ -308,7 +308,7 @@ This is a static method
 
   sub createGenericCallRetry() {
 	  
-    my $pCallRetry = API::CallRetry->new();
+    my $pCallRetry = eBay::API::XML::CallRetry->new();
 
     $pCallRetry->setMaximumRetries(2); # try 2 more retries 
     $pCallRetry->setDelayTime(300);    # 300 ms
@@ -327,7 +327,7 @@ This is a static method.
 
   sub createTestCallRetry() {
 
-    my $pCallRetry = eBay::CallRetry->new();
+    my $pCallRetry = eBay::API::XML::CallRetry->new();
 
     $pCallRetry->setMaximumRetries(2); # try 2 more retries 
     $pCallRetry->setDelayTime(300);    # 300 ms
