@@ -48,8 +48,6 @@ use Time::HiRes qw(sleep);
 use Compress::Zlib;
 use XML::Tidy;
 
-use XML::LibXML;
-
 use eBay::API;
 use eBay::API::XML::DataType::XMLRequesterCredentialsType;
 use eBay::API::XML::DataType::ErrorType;
